@@ -1,31 +1,28 @@
-const express = require("express")
+const express = require ("express")
 const app = express()
-const port = 3000
+const port = 3003
 app.use(express.json())
 
-const usuarios = []
-
-app.post("/usuarios", (req, res)=>{
-    const usuarios = req.body
-    usuarios.push(usuarios)
-    res.send("Usuario cadastrado com sucesso!")
-})
-
-app.get("/usuarios", (req, res)=>{
-    res.send(usuarios)
-})          
-
-app.get("/bemvindo",(req, res)=>{
+app.get("/bem vindo",()=>{
+    const dados = req.body
     res.send("Olá, seja bem vindo a API")
 })
 
-app.post("/bemvindo",(req, res)=>{
+app.post(port, (req, res)=>{
     const dados = req.body
-    res.send("Olá, seja bem vindo" + dados.nome)
+    console.log("olá, seja bem vindo" + dados.nome)
 })
 
-
+const usuarios = []
+app.post("/usuarios", (req, res)=>{
+    const usuario = req.body
+    usuarios.push(usuario)
+    res.send("Usuário cadastrado com sucesso!")
+    })
+app.get("/usuarios", (req, res)=>{
+    res.send(usuarios)
+})
 
 app.listen(port, ()=>{
-    console.log("API RODANDO NA PORTA" + port)
+    console.log("API RODANDO NA PORTA  " + port)
 })
